@@ -1,0 +1,10 @@
+-   name: "Install php{{ php_version }}-cli"
+    become: yes
+    apt: pkg="php{{ php_version }}-cli" state=latest
+
+-   name: Setup php.ini
+    become: yes
+    lineinfile: dest="/etc/php/{{ php_version }}/cli/php.ini"
+                regexp="{{ item.reg }}"
+                line="{{ item.line }}"
+    with_items: "{{ php_ini_settings }}"

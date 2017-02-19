@@ -1,0 +1,25 @@
+- hosts: all
+  become: true
+  vars:
+    wkhtmltopdf_url: "http://download.gna.org/wkhtmltopdf/0.12/{{ wkhtmltopdf_version }}/wkhtmltox-{{ wkhtmltopdf_version }}_linux-generic-amd64.tar.xz"
+    web_server: apachephp
+    timezone: America/Phoenix
+    max_nesting_level: 300
+    memory_limit: 512M
+  vars_files:
+    - [ "vars/default.dist.yml" ]
+    - [ "vars/{{ enviroment }}_vars.yml", "vars/common.yml" ]
+  roles:
+    - init
+    - apache
+    - php
+    - php-cli
+    - php-fpm
+    - php-common
+    - { role: mysql-5.6, when: "enviroment == 'dev' or enviroment == 'test'" }
+    - { role: mysql-common, when: "enviroment == 'dev' or enviroment == 'test'" }
+    - composer
+    - node
+    - wkhtmltopdf
+    - supervisor
+    - bash
