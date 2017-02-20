@@ -8,7 +8,7 @@
     memory_limit: 512M
   vars_files:
     - [ "vars/default.dist.yml" ]
-    - [ "vars/{{ enviroment }}_vars.yml", "vars/common.yml" ]
+    - [ "vars/{{ enviroment }}.yml", "vars/common.yml" ]
   roles:
     - init
     - apache
