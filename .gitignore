@@ -1,4 +1,4 @@
 playbook.retry
-/ansible/lamp/vars/dev_vars.yml
-/ansible/lamp/vars/prod_vars.yml
-/ansible/lamp/playbook.yml
+playbook.yml
+/ansible/lamp/vars/dev.yml
+/ansible/lamp/vars/prod.yml
