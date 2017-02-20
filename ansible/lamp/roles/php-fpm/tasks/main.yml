@@ -9,9 +9,11 @@
   
 -   name: Setup php.ini
     become: yes
-    lineinfile: dest="/etc/php/{{ php_version }}/fpm/php.ini"
+    lineinfile: dest="/etc/php/{{ php_version }}/fpm/conf.d/99-overrides.ini"
                 regexp="{{ item.reg }}"
                 line="{{ item.line }}"
+                create=yes
+
     with_items: '{{ php_ini_settings }}'
 
 -   name: Install Apache fcgid
@@ -20,6 +22,7 @@
   
 -   name: Enable needed apache mods
     apache2_module: name={{ item }} state=present
+    become: yes
     with_items:
         - proxy
         - proxy_fcgi
@@ -27,6 +30,7 @@
     
 -   name: Setup php-fpm config
     when: enviroment == 'dev'
+    become: yes
     lineinfile: dest="/etc/php/{{ php_version }}/fpm/php-fpm.conf"
             create=no
             regexp="{{ item.reg }}"
@@ -36,6 +40,7 @@
         
 -   name: Setup default pool
     when: enviroment == 'dev'
+    become: yes
     lineinfile: dest="/etc/php/{{ php_version }}/fpm/pool.d/www.conf"
             create=no
             regexp="{{ item.reg }}"

@@ -2,6 +2,11 @@
     become: yes
     apt: pkg="php{{ php_version}}-{{ item }}" state=latest
     with_items: '{{ php_versioned_packages }}'
+
+-   name: Install non-versioned PHP Packages
+    become: yes
+    apt: pkg="{{ item }}" state=latest
+    with_items: '{{ php_other_packages }}'
       
 -   name: Remove xdebug from CLI
     become: yes

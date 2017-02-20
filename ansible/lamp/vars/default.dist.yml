@@ -52,3 +52,9 @@ doc_root: "/vagrant/web"
 database_name: 'database'
 database_user: 'root'
 database_password: 'password'
+extra_sys_packages: []
+wkhtmltopdf_url: "http://download.gna.org/wkhtmltopdf/0.12/{{ wkhtmltopdf_version }}/wkhtmltox-{{ wkhtmltopdf_version }}_linux-generic-amd64.tar.xz"
+web_server: apachephp
+timezone: America/Phoenix
+max_nesting_level: 300
+memory_limit: 512M

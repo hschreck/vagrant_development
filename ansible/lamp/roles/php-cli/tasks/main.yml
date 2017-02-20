@@ -4,7 +4,9 @@
 
 -   name: Setup php.ini
     become: yes
-    lineinfile: dest="/etc/php/{{ php_version }}/cli/php.ini"
+    lineinfile: dest="/etc/php/{{ php_version }}/cli/conf.d/99-overrides.ini"
                 regexp="{{ item.reg }}"
                 line="{{ item.line }}"
+                create=yes
+
     with_items: "{{ php_ini_settings }}"

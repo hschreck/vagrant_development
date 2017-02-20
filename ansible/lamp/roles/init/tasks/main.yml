@@ -7,7 +7,7 @@
     apt: update_cache=yes
   
 -   name: Install aptitude
-    command: apt-get install aptitude --yes
+    command: apt-get install aptitude --yes warn=no
     become: yes
   
 -   name: Upgrade OS
@@ -26,7 +26,7 @@
 -   name: Install Extra Packages
     become: yes
     apt: pkg='{{ item }}' state=latest
-    with_items: '{{ sys_packages }}'
+    with_items: '{{ sys_packages + extra_sys_packages }}'
 
 -   name: Configure the timezone
     become: yes

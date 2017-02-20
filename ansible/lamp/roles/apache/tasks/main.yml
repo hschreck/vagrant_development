@@ -11,6 +11,7 @@
     apt: pkg=apache2 state=latest
 
 -   name: Install Apache Modules
+    become: yes
     apache2_module: state=present name="{{ item }}"
     notify: restart apache
     with_items:
@@ -23,6 +24,7 @@
         
 -   name: Add user to www-data
     when: enviroment == "prod"
+    become: yes
     user: name="{{ user }}" group="www-data", append=yes
 
 -   name: Change default apache2.4 site
@@ -47,12 +49,14 @@
     
 -   name: Change apache user to "{{ user }}"
     notify: restart apache
+    become: yes
     when: enviroment == 'dev'
     lineinfile: dest=/etc/apache2/envvars
                 regexp='export APACHE_RUN_USER=www-data'
                 line='export APACHE_RUN_USER={{ user }}'
                 
 -   name: Change apache group to {{ user }}
+    become: yes
     when: enviroment == 'dev'
     lineinfile: dest=/etc/apache2/envvars
                 regexp='export APACHE_RUN_GROUP=www-data'
@@ -78,12 +82,15 @@
              dest=/tmp/pagespeed.deb
              
 -   name: Install mod_pagespeed
+    become: yes
     apt: deb=/tmp/pagespeed.deb
      
 -   name: Fix pagespeed cache permissions
     when: enviroment == 'dev'
+    become: yes
     file: path=/var/cache/mod_pagespeed owner="{{ user }}" recurse=yes
     
 -   name: Fix pagespeed log permissions
     when: enviroment == 'dev'
+    become: yes
     file: path=/var/log/pagespeed owner="{{ user }}" recurse=yes

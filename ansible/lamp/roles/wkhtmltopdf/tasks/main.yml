@@ -3,6 +3,7 @@
     register: wkhtmltopdf_install
     
 -   name: Install dependancies
+    become: yes
     when: wkhtmltopdf_install.stat.exists == False
     apt: name=libxrender-dev state=present
    

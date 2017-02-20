@@ -1,5 +1,6 @@
 ---
 - name: restart apache
+  become: yes
   service: name=apache2 enabled=yes state=restarted
   
 - name: use FPM

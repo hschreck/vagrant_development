@@ -4,7 +4,7 @@
     {% set server_names = server_name.split() %}
     {% for server_name in server_names %}
     {% if loop.first %}
-        server_name {{ server_name }}
+        ServerName {{ server_name }}
     {% else %}
         ServerAlias {{ server_name }}
     {% endif %}
