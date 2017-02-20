@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#create playbook file if not exist
+if ! [ -f ansible/lamp/playbook.yml ]; then
+    echo '- include: "playbook.dist.yml"' > dev/ansible/lamp/playbook.yml
+fi
+
+if ! [ -f ansible/setup/playbook.yml ]; then
+    echo '- include: "playbook.dist.yml"' > dev/ansible/lamp/playbook.yml
+fi
