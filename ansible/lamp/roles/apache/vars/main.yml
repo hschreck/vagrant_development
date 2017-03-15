@@ -1,0 +1,11 @@
+apache_mods: [
+    "rewrite",
+    "vhost_alias",
+    "headers",
+    "expires",
+    "filter",
+    "ssl",
+    "http2"
+]
+
+extra_apache_mods: []

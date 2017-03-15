@@ -4,6 +4,7 @@ sys_packages: [
     "nodejs",
     "npm"
 ]
+extra_sys_packages: []
 php_versioned_packages: [
     "zip",
     "xml",
@@ -15,12 +16,12 @@ php_versioned_packages: [
     "mysql"
 ]
 global_composer_packages: [
-  "phpunit/phpunit",
-  "squizlabs/php_codesniffer",
-  "phpmd/phpmd",
-  "friendsofphp/php-cs-fixer",
-  "deployer/deployer",
-  "phpstan/phpstan"
+    "phpunit/phpunit",
+    "squizlabs/php_codesniffer",
+    "phpmd/phpmd",
+    "friendsofphp/php-cs-fixer",
+    "deployer/deployer",
+    "phpstan/phpstan"
 ]
 php_other_packages: [
     "php-pear",
@@ -45,14 +46,16 @@ php_ini_settings: [
     { reg: 'xdebug.remote_handler =', line: 'xdebug.remote_handler = dbgp' },
     { reg: 'xdebug.remote_mode =', line: 'xdebug.remote_mode = req' },
     { reg: 'xdebug.remote_host =', line: 'xdebug.remote_host = {{ xdebug_ip }}' },
-    { reg: 'xdebug.remote_port =', line: 'xdebug.remote_port = 9000' }
+    { reg: 'xdebug.remote_port =', line: 'xdebug.remote_port = 9000' },
+    { reg: 'xdebug.profiler_enable =', line: 'xdebug.profiler_enable = 0' },
+    { reg: 'xdebug.profiler_enable_trigger =', line: 'xdebug.profiler_enable_trigger = 1' },
+    { reg: 'xdebug.profiler_output_dir =', line: 'xdebug.profiler_output_dir = /vagrant/profiles' }
 ]
 enviroment: 'dev'
 doc_root: "/vagrant/web"
 database_name: 'database'
 database_user: 'root'
 database_password: 'password'
-extra_sys_packages: []
 wkhtmltopdf_url: "http://download.gna.org/wkhtmltopdf/0.12/{{ wkhtmltopdf_version }}/wkhtmltox-{{ wkhtmltopdf_version }}_linux-generic-amd64.tar.xz"
 web_server: apachephp
 timezone: America/Phoenix

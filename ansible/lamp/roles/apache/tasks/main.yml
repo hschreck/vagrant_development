@@ -14,13 +14,16 @@
     become: yes
     apache2_module: state=present name="{{ item }}"
     notify: restart apache
-    with_items:
-        - rewrite
-        - vhost_alias
-        - headers
-        - expires
-        - filter
-        - ssl
+    with_items: '{{ apache_mods + extra_apache_mods }}'
+
+-   name: Build override conf
+    become: yes
+    template: src=overrides.conf.tpl dest=/etc/apache2/conf-available/overrides.conf
+
+-   name: Use override conf
+    become: yes
+    command: a2enconf overrides
+    notify: restart apache
         
 -   name: Add user to www-data
     when: enviroment == "prod"
