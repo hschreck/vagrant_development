@@ -71,8 +71,7 @@ Vagrant.configure('2') do |config|
         virtualbox.customize ['modifyvm', :id, '--hwvirtex', 'on']
       end
 
-      config.vm.provider 'vmware_fusion' do |vmware|
-        
+      config.vm.provider :vmware_fusion or config.vm.provider :vmware_workstation do |vmware|
         vmware.vmx['memsize']  = $amount_of_ram
         vmware.vmx['numvcpus'] = $number_of_cpus
       end

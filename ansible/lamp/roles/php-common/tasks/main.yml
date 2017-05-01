@@ -1,7 +1,7 @@
 -   name: Install PHP Packages
     become: yes
     apt: pkg="php{{ php_version}}-{{ item }}" state=latest
-    with_items: '{{ php_versioned_packages }}'
+    with_items: '{{ php_versioned_packages + php_extra_versioned_packages }}'
 
 -   name: Install non-versioned PHP Packages
     become: yes
