@@ -22,7 +22,7 @@ global_composer_packages: [
   "friendsofphp/php-cs-fixer",
   "deployer/deployer",
   "phpstan/phpstan",
-  "endouble/symfony3-custom-coding-standard",
+  #"endouble/symfony3-custom-coding-standard",
 ]
 php_other_packages: [
     "php-pear",
